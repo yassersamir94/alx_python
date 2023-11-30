@@ -8,5 +8,7 @@ if last_digit > 5:
     print("is greater than 5")
 if last_digit == 0:
     print("is 0")
-if last_digit <6 and last_digit !=0 and last_digit <0:
+if last_digit < 6 and last_digit !=0:
+    print("is less than 6 and not 0")
+if -last_digit < 0:
     print("is less than 6 and not 0")
