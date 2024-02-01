@@ -23,3 +23,12 @@ class BaseGeometry:
             Exception: This method is not implemented in the base class.
         """
         raise Exception("area() is not implemented")
+
+    def __init_subclass__(cls, **kwargs):
+        """
+        Prevents the __init_subclass__ method from being inherited.
+
+        Raises:
+            TypeError: BaseGeometry class may not be subclassed.
+        """
+        raise TypeError(f"BaseGeometry class may not be subclassed.")
