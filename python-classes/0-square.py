@@ -1,46 +1,56 @@
-guillaume@ubuntu:~/$ cat 1-main.py
+"""This module defines the Square class.
+
+The Square class represents a square shape with a given size.
+
+Example:
+    # Create a square with size 3
+    my_square = Square(3)
+    print(my_square.area())  # Output: 9
+"""
+guillaume@ubuntu:~/$ cat 0-main.py
 #!/usr/bin/python3
-Square = __import__('1-square').Square
+Square = __import__('0-square').Square
 
-my_square_1 = Square(3)
-print(type(my_square_1))
-print(my_square_1.__dict__)
-
-my_square_2 = Square()
-print(type(my_square_2))
-print(my_square_2.__dict__)
+my_square = Square(3)
+print(type(my_square))
+print(my_square.__dict__)
 
 try:
-    print(my_square_1.size)
+    print(my_square.size)
 except Exception as e:
     print(e)
 
 try:
-    print(my_square_1.__size)
+    print(my_square.__size)
 except Exception as e:
     print(e)
 
-try:
-    my_square_3 = Square("3")
-    print(type(my_square_3))
-    print(my_square_3.__dict__)
-except Exception as e:
-    print(e)
-
-try:
-    my_square_4 = Square(-89)
-    print(type(my_square_4))
-    print(my_square_4.__dict__)
-except Exception as e:
-    print(e)
-
-guillaume@ubuntu:~/$ python3 1-main.py
-<class '1-square.Square'>
+guillaume@ubuntu:~/$ python3 0-main.py
+<class '0-square.Square'>
 {'_Square__size': 3}
-<class '1-square.Square'>
-{'_Square__size': 0}
 'Square' object has no attribute 'size'
 'Square' object has no attribute '__size'
-size must be an integer
-size must be >= 0
-guillaume@ubuntu:~/$
+guillaume@ubuntu:~/$ 
+
+class Square:
+    """Represents a square shape with a given size.
+
+    Attributes:
+        __size (int): Private instance attribute representing the size of the square.
+    """
+
+    def __init__(self, size):
+        """Initializes a Square instance with a given size.
+
+        Args:
+            size (int): The size of the square.
+        """
+        self.__size = size
+
+    def area(self):
+        """Calculates the area of the square.
+
+        Returns:
+            int: The area of the square.
+        """
+        return self.__size ** 2
