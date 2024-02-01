@@ -1,3 +1,7 @@
+"""
+4-base_geometry.py: Module containing an improved BaseGeometry class with an area() method.
+"""
+
 class BaseGeometry:
     """
     Base class representing geometry.
@@ -6,6 +10,9 @@ class BaseGeometry:
     """
 
     def __init__(self):
+        """
+        Initializes a new instance of the BaseGeometry class.
+        """
         pass
 
     def area(self):
