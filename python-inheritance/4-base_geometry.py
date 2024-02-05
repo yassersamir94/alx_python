@@ -4,14 +4,25 @@
 
 class BaseGeometry:
     """
-    BaseGeometry class representing basic geometry operations.
+    Base class representing geometry.
+
+    This class serves as a base for other geometry-related classes.
     """
+
+    def __init_subclass__(cls, **kwargs):
+        """
+        Prevents the __init_subclass__ method from being inherited.
+
+        Raises:
+            TypeError: BaseGeometry class may not be subclassed.
+        """
+        raise TypeError(f"BaseGeometry class may not be subclassed.")
 
     def area(self):
         """
-        Computes the area of the geometry.
+        Compute the area of the geometry.
 
         Raises:
-            Exception: Indicates that the area() method is not implemented.
+            Exception: This method is not implemented in the base class.
         """
         raise Exception("area() is not implemented")
