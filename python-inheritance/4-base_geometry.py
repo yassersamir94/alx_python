@@ -16,7 +16,7 @@ class BaseGeometry:
         Raises:
             TypeError: BaseGeometry class may not be subclassed.
         """
-        raise TypeError(f"BaseGeometry class may not be subclassed.")
+        raise TypeError("BaseGeometry class may not be subclassed.")
 
     def area(self):
         """
