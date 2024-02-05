@@ -9,14 +9,7 @@ class BaseGeometry:
     This class serves as a base for other geometry-related classes.
     """
 
-    def __init_subclass__(cls, **kwargs):
-        """
-        Prevents the __init_subclass__ method from being inherited.
-
-        Raises:
-            TypeError: BaseGeometry class may not be subclassed.
-        """
-        raise TypeError("BaseGeometry class may not be subclassed.")
+    __class__ = type
 
     def area(self):
         """
