@@ -1,25 +1,13 @@
-#!/usr/bin/python3
-"""
-This module defines the BaseGeometry class.
-"""
-BaseGeometry = __import__('4-base_geometry').BaseGeometry
-
-bg = BaseGeometry()
-print(dir(bg))
-
 class BaseGeometry:
     """
-    A class representing geometric shapes.
+    Empty class representing a base geometry.
     """
-
-    def __getattribute__(self, name):
-        """
-        Retrieve an attribute.
-        """
-        return super().__getattribute__(name)
 
     def area(self):
         """
-        Compute the area of the geometric shape.
+        Raises an exception when called.
+
+        Raises:
+            Exception: Always raises an exception with the message 'area() is not implemented'.
         """
         raise Exception("area() is not implemented")
