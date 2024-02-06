@@ -1,3 +1,13 @@
+#!/usr/bin/python3
+# BaseGeometry class import
+BaseGeometry = __import__('4-base_geometry').BaseGeometry
+
+# Instance creation
+bg = BaseGeometry()
+
+# Printing attributes
+print(dir(bg))
+
 """
 This module contains the definition of the BaseGeometry class.
 """
