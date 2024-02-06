@@ -1,3 +1,13 @@
+#!/usr/bin/python3
+"""
+Module for BaseGeometry class.
+
+This module defines the BaseGeometry class, which serves as a base class
+for geometry-related operations. It currently provides a method to raise
+an exception when the area calculation is not implemented.
+"""
+
+
 class BaseGeometry:
     """Empty class BaseGeometry"""
 
