@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """
-8-square.py - Module for the Square class.
+Module 8-square.py - Defines the Square class.
 """
 
+from typing import Union
+Rectangle = __import__('7-rectangle').Rectangle
 
 class Square(Rectangle):
     """
@@ -14,7 +16,7 @@ class Square(Rectangle):
 
     def __init__(self, size: int):
         """
-        Initializes a Square instance.
+        Initializes a Square instance with a given size.
 
         Args:
             size (int): The size of the square.
@@ -25,18 +27,18 @@ class Square(Rectangle):
 
     def __str__(self) -> str:
         """
-        Returns a string representation of the square.
+        Returns a string representation of the Square object.
 
         Returns:
-            str: A string representation of the square.
+            str: A string representation of the Square object.
         """
-        return "[Square] {}/{}".format(self.__size, self.__size)
+        return "[Rectangle] {}/{}".format(self.__size, self.__size)
 
-    def area(self) -> int:
+    def area(self) -> Union[int, float]:
         """
-        Computes the area of the square.
+        Computes the area of the Square.
 
         Returns:
-            int: The area of the square.
+            Union[int, float]: The area of the Square.
         """
-        return self.__size ** 2
+        return self.__size * self.__size
