@@ -1,16 +1,10 @@
 #!/usr/bin/python3
-"""This module defines the BaseGeometry class."""
+"""Module for BaseGeometry class"""
+
 
 class BaseGeometry:
-    """
-    This module defines the BaseGeometry class.
-
-    Public Methods:
-    - area(self): Raises an Exception with the message "area() is not implemented".
-    """
+    """Empty class BaseGeometry"""
 
     def area(self):
-        """
-        This method raises an Exception with the message "area() is not implemented".
-        """
+        """Raises an Exception with the message area() is not implemented"""
         raise Exception("area() is not implemented")
