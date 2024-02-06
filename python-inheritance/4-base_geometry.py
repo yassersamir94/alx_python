@@ -9,6 +9,7 @@ class BaseGeometry:
         """Raises an Exception with the message area() is not implemented"""
         raise Exception("area() is not implemented")
     
+    @classmethod
     def __init_subclass__(cls):
         """
         Empty method to override implicit addition of __init_subclass__.
