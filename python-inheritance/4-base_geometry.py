@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 """Module for BaseGeometry class"""
-BaseGeometry = __import__('4-base_geometry').BaseGeometry
-
-bg = BaseGeometry()
-print(dir(bg))
 
 class BaseGeometry:
     """
