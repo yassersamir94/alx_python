@@ -6,7 +6,7 @@ and displays the body of the response in a specific format.
 
 import requests
 
-def main():
+def fetch_status():
     """
     Fetches the URL https://alu-intranet.hbtn.io/status
     and displays the body of the response in the required format.
@@ -21,4 +21,4 @@ def main():
     print("\t- content: {}".format(content))
 
 if __name__ == "__main__":
-    main()
+    fetch_status()
