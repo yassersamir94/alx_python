@@ -1,12 +1,13 @@
-#!/usr/bin/python3
-"""
-This module defines the BaseGeometry class.
-"""
-
 class BaseGeometry:
     """
     A class representing geometric shapes.
     """
+
+    def __getattribute__(self, name):
+        """
+        Retrieve an attribute.
+        """
+        return super().__getattribute__(name)
 
     def area(self):
         """
