@@ -1,13 +1,3 @@
-#!/usr/bin/python3
-"""
-This module contains the definition of the BaseGeometry class.
-"""
-BaseGeometry = __import__('4-base_geometry').BaseGeometry
-"""
-This module contains the definition of the BaseGeometry class.
-"""
-bg = BaseGeometry()
-print(dir(bg))
 """
 This module contains the definition of the BaseGeometry class.
 """
