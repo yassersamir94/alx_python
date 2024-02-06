@@ -20,9 +20,11 @@ class BaseGeometry:
 
     def __dir__(self):
         """
-        Customizes the dir() function to include only specific attributes.
+        Customizes the dir() function to include specific attributes and default inherited methods.
 
         Returns:
             list: List of attribute names.
         """
-        return ['__class__', 'area']
+        default_attributes = dir(super())
+        custom_attributes = ['area']  # Additional custom attributes
+        return sorted(default_attributes + custom_attributes)
