@@ -17,3 +17,12 @@ class BaseGeometry:
             Exception: Always raises an exception with the message "area() is not implemented".
         """
         raise Exception("area() is not implemented")
+
+    def __dir__(self):
+        """
+        Customizes the dir() function to include only specific attributes.
+
+        Returns:
+            list: List of attribute names.
+        """
+        return ['__class__', 'area']
