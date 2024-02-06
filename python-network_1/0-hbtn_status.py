@@ -13,7 +13,7 @@ def fetch_status():
     """
     url = 'https://alu-intranet.hbtn.io/status'
     response = requests.get(url)
-    content_type = type(response.text).__name__
+    content_type = "<class '{}'>".format(type(response.text).__name__)
     content = response.text
 
     print("Body response:")
