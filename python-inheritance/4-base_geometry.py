@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 """Module for BaseGeometry class"""
 
-class BaseGeometry:
-    """
-    Represents a class for base geometry with an area method.
-    """
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-transform: uppercase;">Title</h1>
+</body>
+</html>
+"""
 
-    def area(self):
-        """
-        Raises an Exception with a message indicating area is not implemented.
-        """
-        raise Exception("area() is not implemented")
-
-    def __init_subclass__(cls):
-        """
-        Empty method to prevent implicit addition of __init_subclass__.
-        """
-        pass
+with open("output.html", "w") as f:
+    f.write(html_content)
