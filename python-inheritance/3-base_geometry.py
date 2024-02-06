@@ -1,9 +1,8 @@
-"""
-3-base_geometry.py: Module containing an empty class representing base geometry.
-"""
+#!/usr/bin/python3
 
 class BaseGeometry:
     """
-    Empty class representing a base geometry.
+    This module defines the BaseGeometry class.
     """
+
     pass
