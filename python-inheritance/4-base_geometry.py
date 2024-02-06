@@ -1,3 +1,7 @@
+"""
+This module contains the definition of the BaseGeometry class.
+"""
+
 class BaseGeometry:
     """
     Empty class representing a base geometry.
