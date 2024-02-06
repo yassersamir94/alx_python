@@ -1,12 +1,12 @@
+#!/usr/bin/python3
 """
-4-base_geometry.py - Module containing the BaseGeometry class with an area() method.
+Module 4-base_geometry.py - Defines the BaseGeometry class.
 """
+
 
 class BaseGeometry:
     """
-    Base class representing geometry.
-
-    This class serves as a base for other geometry-related classes.
+    BaseGeometry class defines geometric operations.
     """
 
     def area(self):
@@ -14,6 +14,6 @@ class BaseGeometry:
         Computes the area of the geometry.
 
         Raises:
-            Exception: Indicates that the area() method is not implemented.
+            Exception: Always raises an exception with the message "area() is not implemented".
         """
         raise Exception("area() is not implemented")
