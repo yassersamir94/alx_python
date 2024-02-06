@@ -1,54 +1,28 @@
 #!/usr/bin/python3
-"""
-6-rectangle.py - Module for the Rectangle class.
-"""
-BaseGeometry = __import__('5-base_geometry').BaseGeometry
+"""Module for Rectangle class"""
+
+
+class BaseGeometry:
+    """Empty class BaseGeometry"""
+
+    def area(self):
+        """Raises an Exception with the message area() is not implemented"""
+        raise Exception("area() is not implemented")
+
+    def integer_validator(self, name, value):
+        """Validates value as an integer greater than 0"""
+        if not isinstance(value, int):
+            raise TypeError(f"{name} must be an integer")
+        if value <= 0:
+            raise ValueError(f"{name} must be greater than 0")
+
 
 class Rectangle(BaseGeometry):
-    """
-    Rectangle class that inherits from BaseGeometry.
-
-    Attributes:
-        __width (int): The width of the rectangle.
-        __height (int): The height of the rectangle.
-    """
+    """Rectangle class inheriting from BaseGeometry"""
 
     def __init__(self, width, height):
-        """
-        Initializes a Rectangle instance.
-
-        Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-        """
-        super().__init__()
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        """Initializes Rectangle with width and height"""
         self.__width = width
         self.__height = height
-
-    def __str__(self):
-        """
-        Returns a string representation of the Rectangle.
-        """
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
-
-    @property
-    def width(self):
-        """
-        Retrieves the width of the Rectangle.
-
-        Returns:
-            int: The width of the Rectangle.
-        """
-        return self.__width
-
-    @property
-    def height(self):
-        """
-        Retrieves the height of the Rectangle.
-
-        Returns:
-            int: The height of the Rectangle.
-        """
-        return self.__height
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)

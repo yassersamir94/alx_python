@@ -1,63 +1,36 @@
 #!/usr/bin/python3
-"""
-7-rectangle.py - Module for the Rectangle class.
-"""
-BaseGeometry = __import__('5-base_geometry').BaseGeometry
+"""Module for Rectangle class"""
 
-class Rectangle(BaseGeometry):
-    """
-    Rectangle class that inherits from BaseGeometry.
 
-    Attributes:
-        __width (int): The width of the rectangle.
-        __height (int): The height of the rectangle.
-    """
-
-    def __init__(self, width, height):
-        """
-        Initializes a Rectangle instance.
-
-        Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-        """
-        super().__init__()
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-        self.__width = width
-        self.__height = height
+class BaseGeometry:
+    """Empty class BaseGeometry"""
 
     def area(self):
-        """
-        Calculates the area of the rectangle.
+        """Raises an Exception with the message area() is not implemented"""
+        raise Exception("area() is not implemented")
 
-        Returns:
-            int: The area of the rectangle.
-        """
+    def integer_validator(self, name, value):
+        """Validates value as an integer greater than 0"""
+        if not isinstance(value, int):
+            raise TypeError(f"{name} must be an integer")
+        if value <= 0:
+            raise ValueError(f"{name} must be greater than 0")
+
+
+class Rectangle(BaseGeometry):
+    """Rectangle class inheriting from BaseGeometry"""
+
+    def __init__(self, width, height):
+        """Initializes Rectangle with width and height"""
+        self.__width = width
+        self.__height = height
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
+
+    def area(self):
+        """Calculates the area of the Rectangle"""
         return self.__width * self.__height
 
     def __str__(self):
-        """
-        Returns a string representation of the Rectangle.
-        """
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
-
-    @property
-    def width(self):
-        """
-        Retrieves the width of the Rectangle.
-
-        Returns:
-            int: The width of the Rectangle.
-        """
-        return self.__width
-
-    @property
-    def height(self):
-        """
-        Retrieves the height of the Rectangle.
-
-        Returns:
-            int: The height of the Rectangle.
-        """
-        return self.__height
+        """Returns the string representation of the Rectangle"""
+        return f"[Rectangle] {self.__width}/{self.__height}"
