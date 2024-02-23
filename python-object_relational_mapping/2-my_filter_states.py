@@ -26,7 +26,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     # Construct the SQL query with user input using format
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id".format(sys.argv[4])
+    query = "SELECT * FROM states WHERE BINARY name = '{}' ORDER BY id".format(sys.argv[4])
 
     # Execute the SQL query
     cur.execute(query)
