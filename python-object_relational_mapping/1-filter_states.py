@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script that lists all states with a name starting with N (upper N)
+Script that lists all states with a name starting with N (lower N)
 from the database hbtn_0e_0_usa.
 """
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     # Execute a SQL query
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+    cur.execute("SELECT * FROM states WHERE name LIKE 'n%' ORDER BY id")
 
     # Fetch all the rows using fetchall() method
     rows = cur.fetchall()
