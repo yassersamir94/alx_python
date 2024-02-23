@@ -1,52 +1,47 @@
 #!/usr/bin/python3
 """
-Script that takes in the name of a state as an argument and lists all cities
-of that state, using the database hbtn_0e_4_usa.
+Lists all cities of a specific state from the database
 """
 
 import sys
 import MySQLdb
 
-if __name__ == "__main__":
-    # Check if correct number of arguments is passed
-    if len(sys.argv) != 5:
-        print("Usage: ./5-filter_cities.py <username> <password> <database> <state_name>")
+def filter_cities(username: str, password: str, database_name: str, state_name: str) -> None:
+    """
+    Connects to the MySQL database and retrieves all cities of the specified state.
+    Prints the cities sorted by ID.
+    """
+    try:
+        db = MySQLdb.connect(host="localhost",
+                             user=username,
+                             passwd=password,
+                             db=database_name,
+                             port=3306)
+
+        cur = db.cursor()
+        cur.execute("SELECT cities.name FROM cities \
+                     JOIN states ON cities.state_id = states.id \
+                     WHERE states.name = %s \
+                     ORDER BY cities.id ASC", (state_name,))
+
+        cities = cur.fetchall()
+        print(", ".join(city[0] for city in cities))
+
+        cur.close()
+        db.close()
+    except MySQLdb.Error as e:
+        print("MySQLdb Error:", e)
         sys.exit(1)
 
-    # Get command-line arguments
-    username, password, database, state_name = sys.argv[1:]
 
-    # Connect to MySQL database
-    db = MySQLdb.connect(host='localhost',
-                         user=username,
-                         passwd=password,
-                         db=database,
-                         port=3306)
+if __name__ == "__main__":
+    if len(sys.argv) != 5:
+        print("Usage: {} username password database_name state_name".format(sys.argv[0]))
+        sys.exit(1)
 
-    # Create a cursor object
-    cursor = db.cursor()
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database_name = sys.argv[3]
+    state_name = sys.argv[4]
 
-    # Construct the SQL query
-    sql_query = """
-        SELECT cities.name
-        FROM cities
-        JOIN states ON cities.state_id = states.id
-        WHERE states.name = %s
-        ORDER BY cities.id ASC
-    """
-
-    # Execute the SQL query
-    cursor.execute(sql_query, (state_name,))
-
-    # Fetch all rows
-    cities = cursor.fetchall()
-
-    # Close cursor and database connection
-    cursor.close()
-    db.close()
-
-    # Print the cities
-    for city in cities:
-        print(city[0], end=", ")
-
-    print()  # Add newline at the end
+    filter_cities(username, password, database_name, state_name)
