@@ -25,9 +25,11 @@ if __name__ == "__main__":
     # Create a cursor object using cursor() method
     cur = conn.cursor()
 
-    # Execute a SQL query to select states based on user input
-    query = "SELECT * FROM states WHERE name = %s ORDER BY id"
-    cur.execute(query, (sys.argv[4],))
+    # Construct the SQL query with user input using format
+    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id".format(sys.argv[4])
+
+    # Execute the SQL query
+    cur.execute(query)
 
     # Fetch all the rows using fetchall() method
     rows = cur.fetchall()
