@@ -1,12 +1,27 @@
-import MySQLdb
-import sys
+#!/usr/bin/python3
+"""
+Script that takes in the name of a state as an argument and lists all cities
+of that state, using the database hbtn_0e_4_usa.
+"""
 
-def get_cities(username, password, database, state_name):
+import sys
+import MySQLdb
+
+if __name__ == "__main__":
+    # Check if correct number of arguments is passed
+    if len(sys.argv) != 5:
+        print("Usage: ./5-filter_cities.py <username> <password> <database> <state_name>")
+        sys.exit(1)
+
+    # Get command-line arguments
+    username, password, database, state_name = sys.argv[1:]
+
     # Connect to MySQL database
     db = MySQLdb.connect(host='localhost',
                          user=username,
                          passwd=password,
-                         db=database)
+                         db=database,
+                         port=3306)
 
     # Create a cursor object
     cursor = db.cursor()
@@ -30,22 +45,8 @@ def get_cities(username, password, database, state_name):
     cursor.close()
     db.close()
 
-    return cities
+    # Print the cities
+    for city in cities:
+        print(city[0], end=", ")
 
-if __name__ == "__main__":
-    # Check if correct number of arguments is passed
-    if len(sys.argv) != 5:
-        print("Usage: python3 5-filter_cities.py <username> <password> <database> <state_name>")
-        sys.exit(1)
-
-    username, password, database, state_name = sys.argv[1:]
-
-    # Get cities for the given state
-    cities = get_cities(username, password, database, state_name)
-
-    # Check if cities are found
-    if cities:
-        # Print the cities
-        print(", ".join(city[0] for city in cities))
-    else:
-        print(f"No cities found for the state: {state_name}")
+    print()  # Add newline at the end
