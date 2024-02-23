@@ -8,6 +8,11 @@ import sys
 import MySQLdb
 
 if __name__ == "__main__":
+    """
+    Connects to a MySQL server running on localhost at port 3306
+    and lists all states with a name starting with N (upper N).
+    """
+
     # Connect to MySQL database
     conn = MySQLdb.connect(
         host="localhost",
@@ -20,8 +25,8 @@ if __name__ == "__main__":
     # Create a cursor object using cursor() method
     cur = conn.cursor()
 
-    # Execute a SQL query
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id")
+    # Execute a SQL query to select states starting with N
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
     # Fetch all the rows using fetchall() method
     rows = cur.fetchall()
