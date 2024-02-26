@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script starts a Flask web application.
+Script that starts a Flask web application.
 """
 
 from flask import Flask, escape
@@ -22,8 +22,8 @@ def display_hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def display_c(text):
-    """Displays 'C' followed by the value of the text variable"""
-    return 'C ' + escape(text.replace('_', ' '))
+    """Displays 'C' followed by the value of the text variable."""
+    return 'C {}'.format(escape(text).replace('_', ' '))
 
 
 if __name__ == '__main__':
