@@ -3,7 +3,7 @@
 Script that starts a Flask web application.
 """
 
-from flask import Flask, escape, abort
+from flask import Flask, escape
 
 app = Flask(__name__)
 
@@ -24,12 +24,6 @@ def display_hbnb():
 def display_c(text):
     """Displays 'C' followed by the value of the text variable."""
     return 'C {}'.format(escape(text).replace('_', ' '))
-
-
-@app.errorhandler(404)
-def page_not_found(error):
-    """Handles 404 errors."""
-    return '404', 404
 
 
 if __name__ == '__main__':
