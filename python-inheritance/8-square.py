@@ -1,45 +1,15 @@
-#!/usr/bin/python3
-"""Module for Square class"""
-
-
-class BaseGeometry:
-    """Empty class BaseGeometry"""
-
-    def area(self):
-        """Raises an Exception with the message area() is not implemented"""
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """Validates value as an integer greater than 0"""
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
-
-
-class Rectangle(BaseGeometry):
-    """Rectangle class inheriting from BaseGeometry"""
-
-    def __init__(self, width, height):
-        """Initializes Rectangle with width and height"""
-        self.__width = width
-        self.__height = height
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-
-    def area(self):
-        """Calculates the area of the Rectangle"""
-        return self.__width * self.__height
-
-    def __str__(self):
-        """Returns the string representation of the Rectangle"""
-        return f"[Rectangle] {self.__width}/{self.__height}"
+"""Import the '7-rectangle' File"""
+Rectangle = __import__('7-rectangle').Rectangle
 
 
 class Square(Rectangle):
-    """Square class inheriting from Rectangle"""
-
+    """Define 'Square' class"""
     def __init__(self, size):
-        """Initializes Square with size"""
+        self.integer_validator("size", size)
         super().__init__(size, size)
         self.__size = size
+
+
+    def area(self):
+        """Define 'area' method"""
+        return self.__size * self.__size
