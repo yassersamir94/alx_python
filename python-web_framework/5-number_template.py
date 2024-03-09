@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script that starts a Flask web application.
+This module defines routes for a Flask web application.
 """
 
 from flask import Flask, escape, render_template
@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello_hbnb():
     """
-    Displays 'Hello HBNB!'.
+    Display 'Hello HBNB!'.
     """
     return 'Hello HBNB!'
 
@@ -19,7 +19,7 @@ def hello_hbnb():
 @app.route('/hbnb', strict_slashes=False)
 def display_hbnb():
     """
-    Displays 'HBNB'.
+    Display 'HBNB'.
     """
     return 'HBNB'
 
@@ -27,7 +27,8 @@ def display_hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def display_c(text):
     """
-    Displays 'C' followed by the value of the text variable.
+    Display 'C ' followed by the value of the text variable.
+    Replace underscore _ symbols with a space.
     """
     return 'C {}'.format(escape(text).replace('_', ' '))
 
@@ -36,7 +37,7 @@ def display_c(text):
 @app.route('/python/<text>', strict_slashes=False)
 def display_python(text):
     """
-    Displays 'Python' followed by the value of the text variable.
+    Display 'Python ' followed by the value of the text variable.
     The default value of text is 'is cool'.
     """
     return 'Python {}'.format(escape(text).replace('_', ' '))
@@ -45,7 +46,7 @@ def display_python(text):
 @app.route('/number/<int:n>', strict_slashes=False)
 def is_number(n):
     """
-    Displays 'n is a number' only if n is an integer.
+    Display 'n is a number' only if n is an integer.
     """
     return '{} is a number'.format(escape(n))
 
@@ -53,7 +54,8 @@ def is_number(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """
-    Displays a HTML page only if n is an integer.
+    Display an HTML page only if n is an integer.
+    The HTML page includes an H1 tag with the content 'Number: n' inside the BODY tag.
     """
     return render_template('5-number.html', n=n)
 
