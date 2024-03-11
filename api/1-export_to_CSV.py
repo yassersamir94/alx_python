@@ -1,6 +1,6 @@
+import csv
 import requests
 import sys
-import csv
 
 id = sys.argv[1]
 
