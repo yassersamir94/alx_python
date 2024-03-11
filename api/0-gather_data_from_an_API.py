@@ -1,8 +1,16 @@
-#!/usr/bin/python3
 import requests
 import sys
 
 def fetch_todo_list(employee_id):
+    """
+    Fetches the TODO list progress for a given employee ID from a REST API.
+
+    Args:
+        employee_id (int): The ID of the employee.
+
+    Returns:
+        None
+    """
     # URL for the employee's TODO list
     todo_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
