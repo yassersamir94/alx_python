@@ -1,41 +1,21 @@
+#!/usr/bin/python3
+import csv
 import requests
 import sys
-import csv
 
-def export_to_csv(employee_id):
-    # Define the API endpoints
-    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
+user_id = str(sys.argv[1])
 
-    # Fetch user data
-    user_data = requests.get(user_url).json()
-    
-    # Fetch todos for the user
-    todos_data = requests.get(todos_url).json()
+request_user = "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+request_todos = "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
 
-    # Prepare the CSV filename
-    csv_filename = f"{employee_id}.csv"
+data_user = requests.get(request_user).json()
+data_todos = requests.get(request_todos).json()
 
-    # Write data to CSV file
-    with open(csv_filename, mode='w', newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_MINIMAL)
-        
-        # Write header
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        
-        # Write data rows
-        for todo in todos_data:
-            writer.writerow([
-                user_data['id'],
-                user_data['username'],
-                todo['completed'],
-                todo['title']
-            ])
+filename = f"{user_id}.csv"
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 1-export_to_CSV.py <employee_id>")
-        sys.exit(1)
-    
-    employee_id = sys.argv[1]
-    export_to_csv(employee_id)
+with open(filename, "w", newline="") as file:
+    csvwriter = csv.writer(file, quoting=csv.QUOTE_ALL)
+    for task in data_todos:
+        csvwriter.writerow(
+            [user_id, str(data_user["username"]), task["completed"], task["title"]]
+        )
