@@ -29,3 +29,26 @@ if __name__ == "__main__":
 
     employee_id = sys.argv[1]
     export_to_csv(employee_id)
+
+def user_info(id):
+    """ Check user information """
+
+    total_tasks = 0
+    response = requests.get(todos_url).json()
+    for i in response:
+        if i['userId'] == id:
+            total_tasks += 1
+
+    try:
+        num_lines = 0
+        with open(str(id) + ".csv", 'r') as f:
+            for line in f:
+                if not line == '\n':
+                    num_lines += 1
+
+        if total_tasks == num_lines:
+            print("Number of tasks in CSV: OK")
+        else:
+            print("Number of tasks in CSV: Incorrect")
+    except FileNotFoundError:
+        print(f"CSV file {id}.csv not found.")
