@@ -2,10 +2,6 @@ import csv
 import requests
 import sys
 
-import requests
-import sys
-import csv
-
 # Function to fetch employee details and tasks
 def fetch_employee_data(employee_id):
     user_response = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}')
