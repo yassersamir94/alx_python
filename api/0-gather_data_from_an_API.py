@@ -28,9 +28,10 @@ def fetch_todo_list(employee_id):
         # Count the number of completed tasks
         completed_tasks = [task for task in todo_data if task['completed']]
         num_completed_tasks = len(completed_tasks)
+        total_tasks = len(todo_data)
 
         # Display the employee's TODO list progress
-        print(f"Employee {employee_name} is done with tasks ({num_completed_tasks}/{len(todo_data)}):")
+        print(f"Employee {employee_name} is done with tasks({num_completed_tasks}/{total_tasks}):")
         for task in completed_tasks:
             print(f"\t{task['title']}")
 
