@@ -1,40 +1,26 @@
-import csv
 import requests
 import sys
+import csv
 
-# Function to fetch employee details and tasks
-def fetch_employee_data(employee_id):
-    user_response = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}')
-    todos_response = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos')
+def export_to_csv(employee_id):
+    # Fetch user info
+    request_user = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}')
+    request_todos = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos')
 
-    if user_response.status_code == 200 and todos_response.status_code == 200:
-        user_data = user_response.json()
-        todos_data = todos_response.json()
-        return user_data, todos_data
-    else:
-        print("Failed to fetch data from the API.")
-        return None, None
+    data_user = request_user.json()
+    data_todos = request_todos.json()
 
-# Function to export data to CSV
-def export_to_csv(user_data, todos_data, employee_id):
-    if user_data and todos_data:
-        csv_filename = f'{employee_id}.csv'
-        with open(csv_filename, 'w', newline='') as csvfile:
-            fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
+    # Define CSV filename
+    filename = f"{employee_id}.csv"
 
-            for todo in todos_data:
-                writer.writerow({
-                    'USER_ID': user_data['id'],
-                    'USERNAME': user_data['username'],
-                    'TASK_COMPLETED_STATUS': str(todo['completed']),
-                    'TASK_TITLE': todo['title']
-                })
+    # Write data to CSV
+    with open(filename, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        csv_writer.writerow(['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
+        for todo in data_todos:
+            csv_writer.writerow([employee_id, data_user['name'], str(todo['completed']), todo['title']])
 
-        print(f"Data exported to {csv_filename}.")
-    else:
-        print("Data export failed. Make sure the API endpoints are accessible.")
+    print(f"CSV file '{filename}' created successfully.")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -42,5 +28,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     employee_id = sys.argv[1]
-    user_data, todos_data = fetch_employee_data(employee_id)
-    export_to_csv(user_data, todos_data, employee_id)
+    export_to_csv(employee_id)
