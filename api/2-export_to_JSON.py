@@ -2,13 +2,16 @@ import json
 import requests
 import sys
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 {} <employee_id>".format(sys.argv[0]))
-        sys.exit(1)
+def export_to_json(employee_id):
+    """
+    Fetches employee data and exports it to a JSON file.
 
-    employee_id = sys.argv[1]
+    Args:
+    - employee_id: The ID of the employee whose data is to be exported.
 
+    Returns:
+    - None
+    """
     # Retrieve user data
     user_response = requests.get('https://jsonplaceholder.typicode.com/users/{}'.format(employee_id))
     user_data = user_response.json()
@@ -34,3 +37,11 @@ if __name__ == "__main__":
         json.dump(json_data, json_file)
 
     print("Data exported to", filename)
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 {} <employee_id>".format(sys.argv[0]))
+        sys.exit(1)
+
+    employee_id = sys.argv[1]
+    export_to_json(employee_id)
