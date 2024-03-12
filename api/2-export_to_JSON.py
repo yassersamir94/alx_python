@@ -7,7 +7,7 @@ def export_to_json(employee_id):
     Fetches employee data and exports it to a JSON file.
 
     Args:
-    - employee_id: The ID of the employee whose data is to be exported.
+    - employee_id (int): The ID of the employee whose data is to be exported.
 
     Returns:
     - None
